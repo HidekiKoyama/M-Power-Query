@@ -7,21 +7,13 @@
                 if 
                 Json.Document(
                         Web.Contents("https://receitaws.com.br", [
-                            RelativePath = "/v1/cnpj/" & CNPJ,
-                            Query =
-                                [
-                                    
-                                ]
+                            RelativePath = "/v1/cnpj/" & CNPJ, Query = []
                         ])
                     )[status] = "ERROR" then "Verificar se o CNPJ foi digitado corretamente!"
                 else
                   Json.Document(
                         Web.Contents("https://receitaws.com.br", [
-                            RelativePath = "/v1/cnpj/" & CNPJ,
-                            Query =
-                                [
-                                    
-                                ]
+                            RelativePath = "/v1/cnpj/" & CNPJ, Query = []
                         ])
                     )  
             otherwise
