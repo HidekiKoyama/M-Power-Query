@@ -3,14 +3,28 @@
 (CNPJ as text) => 
     let
         RetornoApi = 
-            Json.Document(
-                    Web.Contents("https://receitaws.com.br", [
-                        RelativePath = "/v1/cnpj/" & CNPJ,
-                        Query =
-                            [
-                                
-                            ]
-                    ])
-                )
+            try
+                if 
+                Json.Document(
+                        Web.Contents("https://receitaws.com.br", [
+                            RelativePath = "/v1/cnpj/" & CNPJ,
+                            Query =
+                                [
+                                    
+                                ]
+                        ])
+                    )[status] = "ERROR" then "Verificar CNPJ"
+                else
+                  Json.Document(
+                        Web.Contents("https://receitaws.com.br", [
+                            RelativePath = "/v1/cnpj/" & CNPJ,
+                            Query =
+                                [
+                                    
+                                ]
+                        ])
+                    )  
+            otherwise
+                "Por favor, verificar sua conexão!"
     in
         RetornoApi
